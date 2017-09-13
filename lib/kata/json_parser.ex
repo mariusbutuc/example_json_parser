@@ -8,14 +8,8 @@ defmodule Kata.JsonParser do
 
   ## Examples
 
-      iex> parse("null")
-      [{:null, 1}]
-
-      iex> parse("true")
-      [{true, 1}]
-
-      iex> parse("false")
-      [{false, 1}]
+      iex> parse(~s({ "foo": 42 }))
+      [{:"{", 1}, {:string, 1, "foo"}, {:":", 1}, {:int, 1, 42}, {:"}", 1}]
 
   """
   def parse(str) do
