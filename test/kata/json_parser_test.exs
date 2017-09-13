@@ -11,7 +11,7 @@ defmodule Kata.JsonParserTest do
     end
 
     test "recognises strings" do
-      assert Parser.parse(~s("test")) == [{:string, 1, '"test"'}]
+      assert Parser.parse(~s("test")) == [{:string, 1, "test"}]
     end
 
     test "ignores whitespace" do
