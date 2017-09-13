@@ -4,12 +4,12 @@ defmodule Kata.JsonParser do
   """
 
   @doc """
-  Transform a string of JSON into a meaninful data structure.
+  Transform a string of JSON into a keyword lists.
 
   ## Examples
 
-      iex> parse(~s({ "foo": 42 }))
-      :to_be_determined
+      iex> parse(~s({ "foo": "bar", "baz": 42 }))
+      [foo: "bar", baz: 42]
 
   """
   def parse(str) do

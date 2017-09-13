@@ -34,14 +34,16 @@ defmodule Kata.JsonParserTest do
       assert Parser.parse("[42,true,false,null]") == [42, true, false, nil]
     end
 
-    @tag :skip
-    test "recognises symbols" do
-      assert Parser.parse("{null:true}") == ["{": 1, null: 1, ":": 1, true: 1, "}": 1]
+    test "parses an empty object" do
+      assert Parser.parse("{}") == []
     end
 
-    @tag :skip
+    test "parses objects with attributes" do
+      assert Parser.parse(~s({"name":"John"})) == [name: "John"]
+    end
+
     test "ignores whitespace" do
-      assert Parser.parse("{ null: true }") == ["{": 1, null: 1, ":": 1, true: 1, "}": 1]
+      assert Parser.parse(~s({ "foo": 42 })) == [foo: 42]
     end
   end
 end
