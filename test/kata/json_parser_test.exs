@@ -10,6 +10,10 @@ defmodule Kata.JsonParserTest do
       assert Parser.parse("{null:true}") == ["{": 1, null: 1, ":": 1, true: 1, "}": 1]
     end
 
+    test "recognises strings" do
+      assert Parser.parse(~s("test")) == [{:string, 1, '"test"'}]
+    end
+
     test "ignores whitespace" do
       assert Parser.parse("{ null: true }") == ["{": 1, null: 1, ":": 1, true: 1, "}": 1]
     end
