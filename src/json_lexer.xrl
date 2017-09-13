@@ -1,8 +1,13 @@
 Definitions.
 
+KEYWORD    = null|true|false
+SYMBOL     = [{}\[\]:,]
+WHITESPACE = [\s\t\r\n]+
+
 Rules.
 
-null|true|false : {token, {list_to_atom(TokenChars), TokenLine}}.
-[{}\[\]:,]      : {token, {list_to_atom(TokenChars), TokenLine}}.
+{KEYWORD}          : {token, {list_to_atom(TokenChars), TokenLine}}.
+{SYMBOL}           : {token, {list_to_atom(TokenChars), TokenLine}}.
+{WHITESPACE}       : skip_token.
 
 Erlang code.
