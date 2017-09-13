@@ -30,6 +30,10 @@ defmodule Kata.JsonParserTest do
       assert Parser.parse(~s("test")) == "test"
     end
 
+    test "parses a list of tokens" do
+      assert Parser.parse("[42,true,false,null]") == [42, true, false, nil]
+    end
+
     @tag :skip
     test "recognises symbols" do
       assert Parser.parse("{null:true}") == ["{": 1, null: 1, ":": 1, true: 1, "}": 1]
