@@ -5,8 +5,10 @@ Rootsymbol value.
 value -> null : nil.
 value -> true : true.
 value -> false : false.
-value -> string : '$1'.
-value -> int : '$1'.
-value -> float : '$1'.
+value -> string : extract_value('$1').
+value -> int : extract_value('$1').
+value -> float : extract_value('$1').
 
 Erlang code.
+
+extract_value({_, _, Value}) -> Value.

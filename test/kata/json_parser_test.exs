@@ -18,24 +18,21 @@ defmodule Kata.JsonParserTest do
       assert Parser.parse("null") == nil
     end
 
+    test "parses integers" do
+      assert Parser.parse("42") == 42
+    end
+
+    test "parses floats" do
+      assert Parser.parse("1.7") == 1.7
+    end
+
+    test "parses strings" do
+      assert Parser.parse(~s("test")) == "test"
+    end
+
     @tag :skip
     test "recognises symbols" do
       assert Parser.parse("{null:true}") == ["{": 1, null: 1, ":": 1, true: 1, "}": 1]
-    end
-
-    @tag :skip
-    test "recognises strings" do
-      assert Parser.parse(~s("test")) == [{:string, 1, "test"}]
-    end
-
-    @tag :skip
-    test "recognises integers" do
-      assert Parser.parse(~s({"foo": 42})) == [{:"{", 1}, {:string, 1, "foo"}, {:":", 1}, {:int, 1, 42}, {:"}", 1}]
-    end
-
-    @tag :skip
-    test "recognises floats" do
-      assert Parser.parse(~s({"bar": 1.7})) == [{:"{", 1}, {:string, 1, "bar"}, {:":", 1}, {:float, 1, 1.7}, {:"}", 1}]
     end
 
     @tag :skip
